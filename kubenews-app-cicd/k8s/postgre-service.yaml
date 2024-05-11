@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgre
+  namespace: tmp
+spec:
+  selector: 
+    app: postgre
+  ports:
+    - port: 5432
+  type: ClusterIP
