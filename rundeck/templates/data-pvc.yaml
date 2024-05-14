@@ -1,0 +1,21 @@
+{{- $fullName := include "rundeck.fullname" . -}}
+{{- $labels := include "rundeck.labels" . -}}
+
+{{- if and .Values.data.claim.enabled }}
+{{- with .Values.data.claim}}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ $fullName }}-data-claim
+  labels: {{ $labels | indent 4 }}
+spec:
+  {{- if .storageClass }}
+  storageClassName: {{ required "Please set the storage class for the data volume!" .storageClass | quote }}
+  {{- end }}
+  accessModes:
+    - {{ .accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .size | quote }}
+{{- end }}
+{{- end }}
