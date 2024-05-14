@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bookstack-tls
+  namespace: bookstack
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - yoursite.com.br
+    secretName: bookstack-tls
+  rules:
+  - host: yoursite.com.br
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: bookstack-svc
+              port:
+                number: 80
