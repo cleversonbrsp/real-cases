@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rundeck-deployment
+  namespace: rundeck
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rundeck
+  template:
+    metadata:
+      labels:
+        app: rundeck
+    spec:
+      containers:
+      - name: rundeck
+        image: rundeck/rundeck:5.2.0
+        ports:
+        - containerPort: 4440
+
+        envFrom:
+        - secretRef:
+            name: rundeckdb-secrets
+
+        env:
+        - name: RUNDECK_DATABASE_DRIVER
+          value: org.postgresql.Driver
+        - name: RUNDECK_DATABASE_URL
+          value: jdbc:postgresql://postgres-svc:5432/rundeck
+        - name: RUNDECK_DATABASE_USERNAME
+
+        - name: JVM_MAX_RAM_PERCENTAGE
+          value: "50"
+        # - name: RUNDECK_SERVER_UUID
+        #   value: "unique-server-uuid"
+        - name: RUNDECK_GRAILS_URL
+          value: "yoursite.com.br"
+        - name: RUNDECK_SERVER_FORWARDED
+          value: "false"
+
+        - name: SMTP_HOST
+          value: smtp.site.com
+        - name: SMTP_PORT
+          value: "smtp_port"
+        - name: SMTP_USERNAME
+          value: smtp_username
+        - name: SMTP_PASSWORD
+          value: smtp_pwd
+        - name: MAIL_FROM_NAME
+          value: mail_from_name
+        - name: MAIL_FROM
+          value: mailfrom@yoursite.com.br
+        - name: MAIL_ENCRYPTION
+          value: tls
+
+        volumeMounts:
+        - name: rundeck-data
+          mountPath: /home/rundeck/server/data
+      volumes:
+      - name: rundeck-data
+        persistentVolumeClaim:
+          claimName: rundeck-data-pvc
+
