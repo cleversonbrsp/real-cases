@@ -27,7 +27,7 @@ Os requisitos de sistema do Rundeck são geralmente modestos, exigindo recursos 
 Existe suporte e documentação disponíveis?
 Sim, o Rundeck oferece suporte técnico, documentação detalhada e uma comunidade ativa para ajudar os usuários a implementar e utilizar a plataforma de forma eficaz.
 
-![externalsecret](./imgs/img2.jpg)
+![diagram](./imgs/img1.jpg)
 
 ### Observações:
 Para adicionar um PostgreSQL e interconectar com o Rundeck, precisamos criar o Deployment e Service do PostgreSQL, adicionar um Secret para armazenar as credenciais do banco de dados e atualizar o Deployment do Rundeck para usar o PostgreSQL.
