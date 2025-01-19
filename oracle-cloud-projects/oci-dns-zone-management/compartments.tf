@@ -1,6 +1,6 @@
-resource "oci_identity_compartment" "dns_management_project" {
+resource "oci_identity_compartment" "dns_management_oci_project" {
   compartment_id = var.comp_id
-  description    = "dns project"
-  name           = "dns_management_project"
+  description    = "dns management oci project"
+  name           = "dns_management_oci_project"
   enable_delete  = true
 }
