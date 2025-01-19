@@ -1,8 +1,8 @@
 resource "oci_core_instance" "sao_paulo_instance" {
-  availability_domain = var.sampa_ad
-  compartment_id      = oci_identity_compartment.dns_management_project.id
-  display_name        = "web-sampa"
-  shape               = var.ampere_shape
+  availability_domain  = var.sampa_ad
+  compartment_id       = oci_identity_compartment.dns_management_project.id
+  display_name         = "web-sampa"
+  shape                = var.ampere_shape
   preserve_boot_volume = false
 
   shape_config {
@@ -18,7 +18,7 @@ resource "oci_core_instance" "sao_paulo_instance" {
 
   metadata = {
     ssh_authorized_keys = var.ssh_instances_key
-     user_data           = base64encode(file("runner-userdata.sh"))
+    user_data           = base64encode(file("runner-userdata.sh"))
   }
 
   source_details {

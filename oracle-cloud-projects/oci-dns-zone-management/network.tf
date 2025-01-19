@@ -1,5 +1,5 @@
 resource "oci_core_vcn" "vcn_dns_project" {
-  compartment_id = oci_identity_compartment.dns_project.id
+  compartment_id = oci_identity_compartment.dns_management_project.id
   cidr_block     = "192.168.0.0/16"
   display_name   = "vcn-dns-project"
 }
@@ -7,12 +7,12 @@ resource "oci_core_vcn" "vcn_dns_project" {
 resource "oci_core_subnet" "pub_subnet" {
   cidr_block     = "192.168.0.0/16"
   display_name   = "pubsub-dns-project"
-  compartment_id = oci_identity_compartment.dns_project.id
+  compartment_id = oci_identity_compartment.dns_management_project.id
   vcn_id         = oci_core_vcn.vcn_dns_project.id
 }
 
 resource "oci_core_internet_gateway" "internet_gateway" {
-  compartment_id = oci_identity_compartment.dns_project.id
+  compartment_id = oci_identity_compartment.dns_management_project.id
   display_name   = "igw"
   enabled        = "true"
   vcn_id         = oci_core_vcn.vcn_dns_project.id
