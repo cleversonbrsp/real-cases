@@ -62,6 +62,27 @@ Design and implement a high-availability infrastructure for a web application us
 5. **OCI Monitoring**: Track and analyze DNS activity.  
 6. **DNSSEC**: Enhance DNS security.  
 
+    +------------------------+
+    |      End Users         |
+    +------------------------+
+                 |
+                 ▼
+       +-------------------+
+       |    OCI DNS        |
+       |   (Managed Zone)  |
+       +-------------------+
+                 |
+                 ▼
+       +-------------------+
+       |  OCI Load Balancer|
+       +-------------------+
+            /         \
+           /           \
++----------------+ +----------------+
+|  Compute (R1)  | |  Compute (R2)  |
+|  Nginx/Apache  | |  Nginx/Apache  |
++----------------+ +----------------+
+
 ---
 
 ### **Additional Challenges**
@@ -70,3 +91,8 @@ Design and implement a high-availability infrastructure for a web application us
 - Test zone failover scenarios to understand real-time behavior.  
 
 This project provides hands-on experience with **OCI DNS Zone Management**, while also exploring integration with other essential Oracle Cloud services.
+
+### **DOCs**
+https://docs.oracle.com/en/solutions/automate-dns-pz-entries-with-functions/index.html#GUID-5B8FD72C-7BCB-4B20-85FA-3A08A81EDB23
+
+
