@@ -62,3 +62,5 @@ variable "comp_id" {
 variable "ampere_shape" {
   default = "ampere shape"
 }
+
+
