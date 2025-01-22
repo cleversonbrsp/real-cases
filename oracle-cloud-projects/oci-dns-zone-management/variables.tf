@@ -63,4 +63,10 @@ variable "ampere_shape" {
   default = "ampere shape"
 }
 
+variable "rrset_domain" {
+  default = ""
+}
 
+variable "rdata" {
+  default = ""
+}
